@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% include "header.html" %}
+{% block content %}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        font-family: 'Nunito';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .error {
+        display: flex;
+        padding-top: 20%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .error a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #188037;
+        border-radius: 3px;
+        padding: 3% 9%;
+        margin-top: 5%;
+        text-decoration: none;
+        color: #188037;
+    }
+</style>
+<div class="error">
+    <h1>OoOpss!</h1>
+    <p>Something went wrong!</p>
+    <p>Maybe the page doesn't exist?😰</p>
+    <a href="dashboard">Go Back</a>
+</div>
+{% endblock content %}

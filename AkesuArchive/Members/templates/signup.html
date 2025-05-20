@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+{% block content %}
+<style>
+    .col-md-11 {
+        margin-top: 5%;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+    }
+    img {
+        border: 1px solid #d1d6de;
+        background-color: #1d2636;
+        padding: 0.5vh 3vh;
+        border-top-right-radius: 10vh;
+        border-bottom-right-radius: 10vh;
+    }
+    li {
+        color: #d6506f;
+        list-style-type: none;
+    }
+    h2 a{
+        text-decoration: none;
+        color: #188037;
+    }
+    h2 a:hover {
+        text-decoration: underline;
+    }
+    form input {
+        width: 100%;
+        border: 1px solid #d1d6de;
+        border-radius: 5px;
+        padding: 2% 10px;
+    }
+    form input[type=submit] {
+        width: 100%;
+        margin: 5% 0;
+        padding: 1.5vh;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #188037;
+        font-size: 18px;
+    }
+</style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 text-center">
+                <img src="{% static 'logo.png' %}" alt="logo" width="120px">
+            </div>
+            <div class="col-md-11">
+                <div class="text-center">
+                    <h1>Create an account</h1>
+                    <h2>Already have one? <a href="login">Sign in</a></h2>
+                </div>
+                <form class="container-md" action="signup" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            {{ form }}
+                            <input type="submit" value="Sign Up">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

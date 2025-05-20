@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+    <style>
+        .col-md-11 {
+            margin-top: 10%;
+        }
+        h2 a{
+            text-decoration: none;
+            color: #188037;
+        }
+        h2 a:hover {
+            text-decoration: underline;
+        }
+        img {
+            border: 1px solid #d1d6de;
+            background-color: #1d2636;
+            padding: 0.5vh 3vh;
+            border-top-right-radius: 10vh;
+            border-bottom-right-radius: 10vh;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 5%;
+        }
+        form input {
+            width: 100%;
+            border: 1px solid #d1d6de;
+            border-radius: 5px;
+            padding: 2% 10px;   
+        }
+        form input[type=submit] {
+            width: 100%;
+            margin: 5% 0;
+            padding: 1.5vh;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #188037;
+            font-size: 18px;
+        }
+        li {
+            list-style-type: none;
+            color: red;
+        }
+    </style>
+    <div class="page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1 text-center">
+                    <img src="{% static 'logo.png' %}" alt="logo" width="120px">
+                </div>
+                <div class="col-md-11">
+                    <div class="text-center">
+                        <h1>Sign in to Akesu-Archive</h1>
+                        <h2 style="margin: 1vh 0;">Don't have an account? <a href="signup">Sign Up</a></h2>
+                    </div>
+                    <form action="login" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                {{ form }}
+                                {% if request.GET.next %}
+                                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                                {% endif %}
+                                <input type="submit" value="Login">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

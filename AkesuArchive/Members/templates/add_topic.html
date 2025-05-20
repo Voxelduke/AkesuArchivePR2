@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% include "header.html" %}
+{% block content %}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        font-family: 'Nunito';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    form {
+        padding-top: 15%;
+    }
+    form input{
+        margin-bottom: 10%;
+    }
+    input[type="submit"] {
+        width: 100%;
+        border: 1px solid #d1d6de;
+        padding: 2vh 1vh;
+        border-radius: 5px;
+    }
+    input {
+        width: 95.5%;
+        border: 1px solid #d1d6de;
+        padding: 2vh 1vh;
+        border-radius: 5px;
+    }
+</style>
+<form action="add_topic" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add Topic">
+</form>
+{% endblock content %}

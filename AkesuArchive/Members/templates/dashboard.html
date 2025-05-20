@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% load static %}
+{% block content %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nunito';
+        }
+        header {
+            margin-bottom: 10vh;
+        }
+        nav img {
+            border: 1px solid #d1d6de;
+            background-color: #1d2636;
+            padding: 0.5vh 3vh;
+            border-top-right-radius: 10vh;
+            border-bottom-right-radius: 10vh;
+        }
+        .subject {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgb(234,236,240);
+            border-radius: 30px;
+            height: 38vh;
+        }
+        .subject img {
+            border-radius: 100%;
+        }
+        .subject a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #188037;
+            border-radius: 3px;
+            padding: 3% 9%;
+            margin-top: 5%;
+            text-decoration: none;
+            color: #188037;
+        }
+        nav img {
+            border: 1px solid #d1d6de;
+            background-color: #1d2636;
+            padding: 0.5vh 3vh;
+            border-top-right-radius: 10vh;
+            border-bottom-right-radius: 10vh;
+        }
+    </style>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="navbar bg-body-tertiary fixed-top">
+                        <div class="container-fluid">
+                            <img class="navbar-brand" src="{% static 'logo.png' %}" alt="logo" width="100px">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{ user }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="about">About</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link active" aria-current="page" href="admin_panel">Admin Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link active" aria-current="page" href="privacy_policy">Privacy Policy</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="logout">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center" style="margin-top: 5%;">
+                <div class="animate">
+                    <h1>Hi {{ user }}</h1>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <p style="color: #188037; padding: 0 1%;">Student</p>
+                    <p style="padding: 0 1%;">Year 9</p>
+                    <p style="color: #188037; padding: 0 1%;">Aga Khan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Events</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>There are no events here.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1>Homework</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>There is no homework here.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1>Subjects</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for x in subject %}
+            <div class="col-md-3" style="padding-bottom: 5%;">
+                    <div class="subject"  style='background: white url("static/background.png") no-repeat;'>
+                        <img src="static/{{ x.image }}" alt="{{ x.name }}" width="80px">
+                        <h1 style="color: white;">{{ x.name }}</h1>
+                        <a href="topic/{{ x.id }}">Continue</a>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

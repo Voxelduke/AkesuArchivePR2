@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% block title %}Topics{% endblock title %}
+{% block content %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: 'Nunito';
+    }
+    header {
+        margin-bottom: 10vh;
+    }
+    nav img {
+        border: 1px solid #d1d6de;
+        background-color: #1d2636;
+        padding: 0.5vh 3vh;
+        border-top-right-radius: 10vh;
+        border-bottom-right-radius: 10vh;
+    }
+    .locator {
+        border-bottom: 1px solid#188037;
+        width: 96%;
+        float: left;
+        display: flex;
+        list-style-type: none;
+        padding: 0.5% 2%;
+        align-items: center;
+        color: #188037;
+    }
+    li {
+        padding-right: 1%;
+    }
+    .topic_item {
+        padding: 1% 2%;
+    }
+    .topic {
+        padding: 2%;
+    }
+    .logout a {
+        transition: all 250ms ease-in-out;
+        color: #188037;
+        text-decoration: none;
+    }
+    .logout a:hover {
+        transition: all 250ms ease-in-out;
+        text-decoration: underline;
+    }
+    th, td {
+        padding-left: 0.5%;
+    }
+    .link {
+        color: #40758f;
+        text-decoration: none;
+    }
+    .link:hover {
+        text-decoration: underline;
+    }
+</style>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar bg-body-tertiary fixed-top">
+                    <div class="container-fluid">
+                        <img class="navbar-brand" src="../static/logo.png" alt="logo" width="100px">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{ user }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="about">About</a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link active" aria-current="page" href="../topic/{{ subject.id }}">Topic</a>
+                                    </li>
+                                    <li>
+                                            <a class="nav-link active" aria-current="page" href="../privacy_policy">Privacy Policy</a>
+                                        </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="../">Go Back</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+        </div>
+    </nav>
+</header>
+<div class="topic">
+    <div class="topic_item">
+        <a href="../add_topic">Add Topic</a><br><br><br>
+        <table style="width: 100%;">
+            <tr style="background-color: #40758f; color: white;">
+                <th></th>
+                <th>Topic</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Class</th>
+            </tr>
+            {% for x in topic %}
+                <tr style="border-bottom: 1px solid #e8e8e8;">
+                    <td><img src="../static/icon-yes.svg" alt=""></td>
+                    <td><a href="../notes/{{ x.id }}" class="link">{{ x.name }}</a></td>
+                    <td>{{ subject.name }}</td>
+                    <td>{{ x.date_field }}</td>
+                    <td>{{ x.classroom }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}
